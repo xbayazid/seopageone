@@ -7,7 +7,7 @@ const ToDoCard = ({doe}) => {
     const {_id, title, client, clientImg, author, authorImg, reactImgOne, reactImgTwo, textDivision, totalView, comment, date} = doe;
     const [fileNumber, setFileNumber] = useState([]);
     useEffect(()=>{
-        fetch(`https://seopageone-server.vercel.app/files/${_id}`)
+        fetch(`https://seopageone-server-bayaziddeveloper-gmailcom.vercel.app/files/${_id}`)
         .then(res => res.json())
         .then(data => setFileNumber(data))
     },[])

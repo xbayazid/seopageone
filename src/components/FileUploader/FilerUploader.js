@@ -11,7 +11,7 @@ const FilerUploader = ({setModalIsOpen, modalIsOpen, id}) => {
   const {data: files, refetch} = useQuery({
     queryKey: ['file'],
     queryFn: async() =>{
-      const res = await fetch('https://seopageone-server.vercel.app/files');
+      const res = await fetch('https://seopageone-server-bayaziddeveloper-gmailcom.vercel.app/files');
       const data = await res.json();
       return data;
     }
@@ -25,7 +25,7 @@ const FilerUploader = ({setModalIsOpen, modalIsOpen, id}) => {
     const files = {
       selectedFile, id
     }
-    fetch('https://seopageone-server.vercel.app/files', {
+    fetch('https://seopageone-server-bayaziddeveloper-gmailcom.vercel.app/files', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json', 
@@ -35,6 +35,7 @@ const FilerUploader = ({setModalIsOpen, modalIsOpen, id}) => {
                 .then(res => res.json())
                 .then(result =>{
                     refetch();
+                    // toast.success(`${data.name} is added successfully`);
                     
     setModalIsOpen(false);
                 })
