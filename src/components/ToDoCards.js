@@ -6,7 +6,7 @@ const ToDoCards = () => {
     const {data: does = [], refetch} = useQuery({
         queryKey: ['does'],
         queryFn: async() =>{
-            const res = await fetch('/toDo.json');
+            const res = await fetch('https://seopageone-server.vercel.app/toDO');
             const data = await res.json();
             return data;
         }

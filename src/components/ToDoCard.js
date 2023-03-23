@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { HiDatabase, HiOutlineClipboardList, HiOutlineChatAlt2, HiLink, HiOutlineCalendar } from "react-icons/hi";
+import FilerUploader from './FileUploader/FilerUploader';
 
 const ToDoCard = ({doe}) => {
-    const {title, client, clientImg, author, authorImg, reactImgOne, reactImgTwo, textDivision, totalView, comment, date} = doe;
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const {_id, title, client, clientImg, author, authorImg, reactImgOne, reactImgTwo, textDivision, totalView, comment, date} = doe;
+    const [fileNumber, setFileNumber] = useState([]);
+    useEffect(()=>{
+        fetch(`https://seopageone-server.vercel.app/files/${_id}`)
+        .then(res => res.json())
+        .then(data => setFileNumber(data))
+    },[])
     return (
         <div className='my-2 p-3 rounded-md bg-white'>
             <div>
@@ -37,8 +45,8 @@ const ToDoCard = ({doe}) => {
                     <p>{comment}</p>
                    </div>
                    <div className='flex gap-1 items-center'>
-                    <HiLink/>
-                    <p>25</p>
+                    <HiLink  onClick={() => setModalIsOpen(true)} className='cursor-pointer'/>
+                    <p>{fileNumber.length?`${fileNumber.length}`: '0'}</p>
                    </div>
                    <div className='flex gap-1 items-center'>
                     <HiOutlineCalendar/>
@@ -46,6 +54,11 @@ const ToDoCard = ({doe}) => {
                    </div>
                 </div>
             </div>
+           <div>
+           { 
+           modalIsOpen === true && 
+           <FilerUploader setModalIsOpen={setModalIsOpen} modalIsOpen={modalIsOpen} id={_id}/>}
+           </div>
         </div>
     );
 };

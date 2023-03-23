@@ -3,7 +3,7 @@ import ToDo from './components/ToDo';
 
 function App() {
   return (
-    <div className='w-[100vw] overflow-auto'>
+    <div className='w-[100vw] mx-auto'>
       <ToDo/>
     </div>
   );
